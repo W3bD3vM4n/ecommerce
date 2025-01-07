@@ -7,6 +7,10 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
+/**
+ * IClienteMapper es un asignador MapStruct que se utiliza para asignar diferentes
+ * tipos de objetos en la aplicación
+ */
 @Mapper(componentModel = "spring")
 public interface IClienteMapper {
 
