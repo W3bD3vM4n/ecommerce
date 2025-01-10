@@ -19,22 +19,22 @@ public class ClienteService {
     @Autowired
     private IClienteRepository iClienteRepository;
 
-    public List<Cliente> obtenerTodosLosClientes() {
+    public List<Cliente> obtenerListaClientesDesdeRepositorio() {
         return iClienteRepository.findAll();
     }
 
-    public Optional<Cliente> obtenerClientePorId(Long id) {
+    public Optional<Cliente> obtenerClientePorIdDesdeRepositorio(Long id) {
         return iClienteRepository.findById(id);
     }
 
-    public Cliente guardarCliente(Cliente cliente) {
+    public Cliente guardarClienteDesdeRepositorio(Cliente cliente) {
         if (cliente.getId() != null && !iClienteRepository.existsById(cliente.getId())) {
             throw new IllegalArgumentException("Cliente con ID" + cliente.getId() + " no existe");
         }
         return iClienteRepository.save(cliente);
     }
 
-    public void borrarCliente(Long id) {
+    public void borrarClienteDesdeRepositorio(Long id) {
         iClienteRepository.deleteById(id);
     }
 

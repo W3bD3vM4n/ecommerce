@@ -14,9 +14,10 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IClienteMapper {
 
-    ClienteResponseDTO convertirCliente(Cliente cliente);
+    ClienteResponseDTO mapearAClienteResponseDTO(Cliente cliente);
 
-    List<ClienteResponseDTO> convertirListaClientes(List<Cliente> clientes);
+    List<ClienteResponseDTO> mapearAListaClienteResponseDTO(List<Cliente> clientes);
 
-    Cliente convertirClienteCreateDTO(ClienteCreateDTO dto);
+    Cliente mapearACliente(ClienteCreateDTO dto);
+
 }
