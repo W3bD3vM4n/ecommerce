@@ -66,7 +66,7 @@ public class ClienteController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> borrarCliente(@PathVariable Long id) {
         clienteService.borrarClienteDesdeRepositorio(id);
-        return  ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();
     }
 
 }
