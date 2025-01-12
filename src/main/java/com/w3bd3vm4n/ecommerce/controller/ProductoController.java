@@ -28,8 +28,8 @@ public class ProductoController {
     @GetMapping("/{id}")
     public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
         return productoService.obtenerProductoPorIdDesdeRepositorio(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -48,17 +48,17 @@ public class ProductoController {
     @PutMapping("/{id}")
     public ResponseEntity<ProductoResponseDTO> actualizarProducto(@PathVariable Long id, @RequestBody ProductoCreateDTO productoCreateDTO) {
         return productoService.obtenerProductoPorIdDesdeRepositorio(id)
-            .map(productoExistente -> {
-                productoExistente.setTitulo(productoCreateDTO.getTitulo());
-                productoExistente.setDetalle(productoCreateDTO.getDetalle());
-                productoExistente.setPrecio(productoCreateDTO.getPrecio());
+                .map(productoExistente -> {
+                    productoExistente.setTitulo(productoCreateDTO.getTitulo());
+                    productoExistente.setDetalle(productoCreateDTO.getDetalle());
+                    productoExistente.setPrecio(productoCreateDTO.getPrecio());
 
-                Producto actualizarProducto = productoService.guardarProductoDesdeRepositorio(productoExistente);
-                ProductoResponseDTO responseDTO = iProductoMapper.mapearAProductoResponseDTO(actualizarProducto);
+                    Producto actualizarProducto = productoService.guardarProductoDesdeRepositorio(productoExistente);
+                    ProductoResponseDTO responseDTO = iProductoMapper.mapearAProductoResponseDTO(actualizarProducto);
 
-                return ResponseEntity.ok(responseDTO);
-            })
-        .orElse(ResponseEntity.notFound().build());
+                    return ResponseEntity.ok(responseDTO);
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

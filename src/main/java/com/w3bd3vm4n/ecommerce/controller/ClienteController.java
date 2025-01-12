@@ -28,8 +28,8 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> obtenerClientePorId(@PathVariable Long id) {
         return clienteService.obtenerClientePorIdDesdeRepositorio(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -48,19 +48,19 @@ public class ClienteController {
     @PutMapping("/{id}")
     public ResponseEntity<ClienteResponseDTO> actualizarCliente(@PathVariable Long id, @RequestBody ClienteCreateDTO clienteCreateDTO) {
         return clienteService.obtenerClientePorIdDesdeRepositorio(id)
-            .map(clienteExistente -> {
-                clienteExistente.setNombre(clienteCreateDTO.getNombre());
-                clienteExistente.setApellido(clienteCreateDTO.getApellido());
-                clienteExistente.setEmail(clienteCreateDTO.getEmail());
-                clienteExistente.setCelular(clienteCreateDTO.getCelular());
-                clienteExistente.setDireccion(clienteCreateDTO.getDireccion());
+                .map(clienteExistente -> {
+                    clienteExistente.setNombre(clienteCreateDTO.getNombre());
+                    clienteExistente.setApellido(clienteCreateDTO.getApellido());
+                    clienteExistente.setEmail(clienteCreateDTO.getEmail());
+                    clienteExistente.setCelular(clienteCreateDTO.getCelular());
+                    clienteExistente.setDireccion(clienteCreateDTO.getDireccion());
 
-                Cliente actualizarCliente = clienteService.guardarClienteDesdeRepositorio(clienteExistente);
-                ClienteResponseDTO responseDTO = iClienteMapper.mapearAClienteResponseDTO(actualizarCliente);
+                    Cliente actualizarCliente = clienteService.guardarClienteDesdeRepositorio(clienteExistente);
+                    ClienteResponseDTO responseDTO = iClienteMapper.mapearAClienteResponseDTO(actualizarCliente);
 
-                return ResponseEntity.ok(responseDTO);
-            })
-        .orElse(ResponseEntity.notFound().build());
+                    return ResponseEntity.ok(responseDTO);
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
