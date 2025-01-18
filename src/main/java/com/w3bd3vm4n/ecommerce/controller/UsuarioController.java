@@ -24,8 +24,6 @@ public class UsuarioController {
 
     @GetMapping
     public List<UsuarioResponseDTO> obtenerTodosLosUsuarios() {
-//        List<Usuario> usuarios = usuarioService.obtenerListaUsuariosDesdeRepositorio();
-//        log.info("Fetched Usuarios: {}", usuarios);
         return iUsuarioMapper.mapearAListaUsuarioResponseDTO(usuarioService.obtenerListaUsuariosDesdeRepositorio());
     }
 
@@ -38,7 +36,7 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<UsuarioResponseDTO> crearUsuario(@RequestBody UsuarioCreateDTO usuarioCreateDTO) {
-        if (usuarioCreateDTO.getNombre() == null) {
+        if (usuarioCreateDTO.getNombre() == null || usuarioCreateDTO.getContrasena() == null) {
             return ResponseEntity.badRequest().body(null);
         }
 
