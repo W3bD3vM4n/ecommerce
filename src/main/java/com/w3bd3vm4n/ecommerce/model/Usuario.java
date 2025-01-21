@@ -1,5 +1,6 @@
 package com.w3bd3vm4n.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String nombre;
     @Column(nullable = false)
+    @JsonIgnore
     private String contrasena;
     @Column(nullable = false)
     private boolean habilitado;
